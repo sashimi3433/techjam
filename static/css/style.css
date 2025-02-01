@@ -1,48 +1,28 @@
+body {
+  color: #333;
+}
+
 header {
-  position: fixed;
   padding: 20px;
   width: 100%;
+  background-color: #333;
+  color: #fff;
 }
 header .inner {
   display: flex;
   max-width: 1000px;
   margin: 0 auto;
-}
-header .inner .logo h1 {
-  font-size: 20px;
+  align-items: center;
+  font-size: 1rem;
 }
 header .inner nav {
-  margin-left: auto;
+  margin-right: auto;
 }
 header .inner nav ul {
   display: flex;
   gap: 40px;
 }
-.sidebar {
-  position: fixed;
-  padding: 30px;
-  height: 100vh;
-  background-color: #333;
-  color: white;
-}
-@media screen and (max-width: 1000px) {
-  .sidebar {
-    display: none;
-  }
-}
-.sidebar nav {
-  display: flex;
-  position: relative;
-  bottom: 0;
-  margin-top: auto;
-  border: 1px silver solid;
-}
-.sidebar nav ul {
-  display: flex;
-  flex-flow: column;
-  gap: 20px;
-  font-weight: bold;
-}
+
 main {
   max-width: 1000px;
   margin: 0 auto;

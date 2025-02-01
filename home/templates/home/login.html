@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <div class="login-container">
+        <h2>ログイン</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">ユーザー名</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            {% if error %}
+            <p class="error-message">{{ error }}</p>
+            {% endif %}
+            <button type="submit" class="login-button">ログイン</button>
+        </form>
+        <p class="register-link">アカウントをお持ちでない方は<a href="{% url 'register' %}">こちら</a></p>
+    </div>
+</main>
+{% endblock %}

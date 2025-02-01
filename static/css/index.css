@@ -1,1 +1,35 @@
-/*# sourceMappingURL=index.css.map */
+h1 {
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  margin: 40px 20px;
+}
+
+.tasklist .task-item {
+  padding: 10px;
+  border: 2px solid #333;
+}
+.tasklist .task-item h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0 40px 0;
+}
+
+.charactor {
+  height: 70vh;
+  background-color: #92a6ff;
+}
+.charactor .chara_name {
+  background-color: #fff;
+  border-radius: 0 0 99px 99px;
+  padding: 10px 15px;
+  width: 100%;
+  margin: 0 auto;
+}
+.charactor img {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=index.css.map */

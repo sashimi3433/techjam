@@ -2,6 +2,34 @@
 
 {% block content %}
 <main>
-    
+    <section class="charactor">
+        <h1 class="chara_name">キャラ名</h1>
+        {% comment %} {% if  %}
+            <img src="" alt="キャラ画像">
+        {% endif %}
+        {% if  %}
+            <img src="" alt="キャラ画像">
+        {% endif %}
+        {% if  %} {% endcomment %}
+            <img src="" alt="キャラ画像">
+        {% comment %} {% endif %} {% endcomment %}
+    </section>
+    <section class="tasklist">
+        <h1>タスクリスト</h1>
+        {% if tasks %}
+            {% for task in tasks %}
+            <div class="task-item priority-{{ task.priority }}">
+                <h3>{{ task.title }}</h3>
+                <p class="description">{{ task.description }}</p>
+                <div class="task-meta">
+                    <span class="priority">優先度: {{ task.get_priority_display }}</span>
+                    <span class="expiry-note">※このタスクは作成から24時間後に自動的に削除されます</span>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-tasks">タスクがありません。</p>
+        {% endif %}
+    </section>
 </main>
 {% endblock %}
