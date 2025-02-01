@@ -1,0 +1,23 @@
+$breakpoints: (
+    'sp': 'screen and (max-width: 1000px)',
+    'pc': 'screen and (min-width: 1001px)',
+    ) !default;
+
+@mixin media($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+$success: #198753;
+$danger: #dc3444;
+$primary: #0c6dfd;
+$warning: #ffc007;
+
+$font: 'TT Norms Pro',
+    "LINE Seed JP",
+    "Helvetica Neue",
+    Arial,
+    Poppins,
+    "Noto Sans JP",
+    sans-serif;

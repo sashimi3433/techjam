@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム</title>
+    <link rel="stylesheet" href="https://unpkg.com/destyle.css@4.0.1/destyle.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <h1>アプリ名</h1>
+            </div>
+
+            <nav>
+                <ul>
+                    <a href=""><li>ホーム</li></a>
+                    <a href="#"><li>進捗</li></a>
+                    <a href="#"><li>マイページ</li></a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <a href=""><li>ホーム</li></a>
+                <a href="#"><li>進捗</li></a>
+                <a href="#"><li>マイページ</li></a>
+            </ul>
+        </nav>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

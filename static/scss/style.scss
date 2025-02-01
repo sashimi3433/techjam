@@ -1,0 +1,64 @@
+@import "variables";
+
+header {
+    position: fixed;
+    padding: 20px;
+    width: 100%;
+
+    .inner {
+        display: flex;
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .logo {
+            h1 {
+                font-size: 20px;
+            }
+        }
+
+        nav {
+            margin-left: auto;
+
+            ul {
+                display: flex;
+                gap: 40px;
+
+                li {}
+            }
+        }
+    }
+}
+
+.sidebar {
+    position: fixed;
+    padding: 30px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+
+    @include media(sp) {
+        display: none;
+    }
+
+    nav {
+        display: flex;
+        position: relative;
+        bottom: 0;
+        margin-top: auto;
+        border: 1px silver solid;
+
+        ul {
+            display: flex;
+            flex-flow: column;
+            gap: 20px;
+            font-weight: bold;
+
+            li {}
+        }
+    }
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
