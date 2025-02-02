@@ -2,53 +2,72 @@
 {% load static %}
 
 {% block content %}
-<main class="container">
-    <section class="charactor">
-        <h1 class="chara_name">キャラ名</h1>
-        {% comment %} {% if  %}
-            <img src="" alt="キャラ画像">
-        {% endif %}
-        {% if  %}
-            <img src="" alt="キャラ画像">
-        {% endif %}
-        {% if  %} {% endcomment %}
-            <img src="" alt="キャラ画像" class="character-image">
-        {% comment %} {% endif %} {% endcomment %}
-    </section>
-    <section class="tasklist">
-        <div class="ongoing-tasks">
-            <h2 class="section-title">進行中のタスク</h2>
-            {% if tasks %}
-                {% for task in tasks %}
-                {% if not task.completed %}
-                <div class="task-item priority-{{ task.priority }}">
-                    <div class="task-header">
-                        <div class="user-avatar">
-                            {% if task.user.profile_image %}
-                                <img src="{{ task.user.profile_image.url }}" alt="ユーザーアバター">
-                            {% else %}
-                                <img src="{% static 'images/default-avatar.png' %}" alt="ユーザーアバター">
-                            {% endif %}
-                        </div>
-                        <div class="task-info">
-                            <p class="user-name">{{ task.user.username }}さんがタスクを開始しました。</p>
-                            <time>00:00</time>
-                        </div>
-                    </div>
-                    <div class="task-content">
-                        <h3 class="task-title">タスク：{{ task.title }}</h3>
-                        <div class="task-time">
-                            <p class="target-time">目標：10分</p>
-                            <p class="completion-time">達成結果：10分</p>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-            {% else %}
-                <p class="no-tasks">進行中のタスクはありません</p>
-            {% endif %}
+<main class="moyumoyu-container">
+    <div class="header-section">
+        <div class="level-info">
+            <div class="level-display">レベル 5</div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 50%;">5 / 10</div>
+            </div>
+            <div class="next-evolution">
+                <p>次の報酬：</p>
+                <img src="{% static 'images/default-avatar.png' %}" alt="次の報酬" class="next-reward-image">
+            </div>
         </div>
-    </section>
+
+        <div class="character-section">
+            <h1 class="site-title">Moyumoyu</h1>
+            <div class="character-wrapper">
+                <img src="{% static 'images/chara.png' %}" alt="Moyumoyu Character" class="character-image">
+            </div>
+        </div>
+
+        <div class="task-rank">
+            <div class="rank-display">タスクランク 10</div>
+            <p class="remaining-tasks">あと 8こ</p>
+        </div>
+    </div>
+
+    <div class="navigation-section">
+        <a href="{% url 'mypage' %}" class="nav-button">
+            <div class="nav-icon">👤</div>
+            <span>マイページ</span>
+        </a>
+        <a href="{% url 'add' %}" class="nav-button">
+            <div class="nav-icon">📝</div>
+            <span>タスク作成</span>
+        </a>
+        {% comment %} <a href="{% url 'friends' %}" class="nav-button">
+            <div class="nav-icon">👥</div>
+            <span>フレンド</span>
+        </a> {% endcomment %}
+        {% comment %} <a href="{% url 'timeline' %}" class="nav-button">
+            <div class="nav-icon">📃</div>
+            <span>タイムライン</span>
+        </a> {% endcomment %}
+    </div>
+
+    <div class="task-progress-section">
+        <h2 class="section-title">本日のタスク進捗</h2>
+        <div class="current-task">
+            <h3>現在進行中のタスク：</h3>
+            <div class="task-info">
+                <div class="task-example">
+                    <span>例：本を読む</span>
+                    <span>0/10ページ</span>
+                </div>
+            </div>
+        </div>
+        <div class="task-counts">
+            <div class="count-item">
+                <h3>タスク完了数：</h3>
+                <span class="count">2こ</span>
+            </div>
+            <div class="count-item">
+                <h3>タスク未完了数：</h3>
+                <span class="count">8こ</span>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock %}
