@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<main>
+<main class="container">
     <div class="form">
         <h1>タスクを追加する</h1>
         <form method="post" action="{% url 'add' %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title">タイトル</label>
-                <input type="text" name="title" id="title" required>
+                <input type="text" name="title" id="title" required class="form-control">
             </div>
             <div class="form-group">
                 <label for="description">説明</label>
-                <textarea name="description" id="description" rows="4"></textarea>
+                <textarea name="description" id="description" rows="4" class="form-control"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="priority">優先度</label>
-                <select name="priority" id="priority" required>
+                <select name="priority" id="priority" required class="form-control">
                     <option value="high">高</option>
                     <option value="medium">中</option>
                     <option value="low">低</option>

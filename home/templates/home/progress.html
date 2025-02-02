@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container progress-page">
+    <section class="progress-overview">
+        <h1 class="page-title">タスクの進捗</h1>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>完了タスク</h3>
+                <p class="stat-number">{{ completed_tasks_count|default:0 }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>進行中</h3>
+                <p class="stat-number">{{ ongoing_tasks_count|default:0 }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>総タスク数</h3>
+                <p class="stat-number">{{ total_tasks_count|default:0 }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tasks-by-priority">
+        <h2 class="section-title">優先度別タスク</h2>
+        <div class="priority-list">
+            <div class="priority-group priority-high">
+                <h3>高優先度</h3>
+                {% for task in high_priority_tasks %}
+                <div class="task-item">
+                    <h4>{{ task.title }}</h4>
+                    <div class="task-status {% if task.completed %}completed{% endif %}">
+                        {% if task.completed %}
+                        <span class="material-symbols-outlined">task_alt</span>
+                        {% else %}
+                        <span class="material-symbols-outlined">pending</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-tasks">タスクはありません</p>
+                {% endfor %}
+            </div>
+
+            <div class="priority-group priority-medium">
+                <h3>中優先度</h3>
+                {% for task in medium_priority_tasks %}
+                <div class="task-item">
+                    <h4>{{ task.title }}</h4>
+                    <div class="task-status {% if task.completed %}completed{% endif %}">
+                        {% if task.completed %}
+                        <span class="material-symbols-outlined">task_alt</span>
+                        {% else %}
+                        <span class="material-symbols-outlined">pending</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-tasks">タスクはありません</p>
+                {% endfor %}
+            </div>
+
+            <div class="priority-group priority-low">
+                <h3>低優先度</h3>
+                {% for task in low_priority_tasks %}
+                <div class="task-item">
+                    <h4>{{ task.title }}</h4>
+                    <div class="task-status {% if task.completed %}completed{% endif %}">
+                        {% if task.completed %}
+                        <span class="material-symbols-outlined">task_alt</span>
+                        {% else %}
+                        <span class="material-symbols-outlined">pending</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-tasks">タスクはありません</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

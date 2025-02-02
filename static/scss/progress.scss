@@ -1,0 +1,116 @@
+@import "variables";
+
+.progress-page {
+    padding: 20px;
+
+    .progress-overview {
+        margin-bottom: 40px;
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+
+            .stat-card {
+                background: #fff;
+                border-radius: 15px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                h3 {
+                    font-size: 1.1rem;
+                    margin-bottom: 10px;
+                    color: #666;
+                }
+
+                .stat-number {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: #333;
+                }
+            }
+        }
+    }
+
+    .tasks-by-priority {
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .priority-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+
+            .priority-group {
+                background: #fff;
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                h3 {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                    text-align: center;
+                }
+
+                .task-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 10px;
+                    border-bottom: 1px solid #eee;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    h4 {
+                        font-size: 1rem;
+                        margin-right: 10px;
+                    }
+
+                    .task-status {
+                        .material-symbols-outlined {
+                            font-size: 20px;
+                            color: #666;
+                        }
+
+                        &.completed .material-symbols-outlined {
+                            color: #4CAF50;
+                        }
+                    }
+                }
+
+                .no-tasks {
+                    text-align: center;
+                    color: #666;
+                    padding: 20px 0;
+                }
+            }
+
+            .priority-high h3 {
+                color: #f44336;
+            }
+
+            .priority-medium h3 {
+                color: #ff9800;
+            }
+
+            .priority-low h3 {
+                color: #4CAF50;
+            }
+        }
+    }
+}

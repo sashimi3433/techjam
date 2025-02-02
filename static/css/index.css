@@ -5,31 +5,125 @@ h1 {
   margin: 40px 20px;
 }
 
-.tasklist .task-item {
-  padding: 10px;
-  border: 2px solid #333;
+.tasklist {
+  padding: 20px;
 }
-.tasklist .task-item h3 {
-  font-size: 2rem;
+
+.task-item {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-item.priority-high {
+  border-left: 4px solid #ff4d4d;
+}
+
+.task-item.priority-medium {
+  border-left: 4px solid #ffd700;
+}
+
+.task-item.priority-low {
+  border-left: 4px solid #4CAF50;
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+  border: 2px solid #e0e0e0;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.task-info .user-name {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.task-info time {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.task-content .task-title {
+  font-size: 1.2rem;
   font-weight: bold;
-  text-align: center;
-  margin: 20px 0 40px 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.task-content .task-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.task-time p {
+  display: flex;
+  align-items: center;
+  color: #666;
 }
 
 .charactor {
-  height: 70vh;
-  background-color: #92a6ff;
+  height: 60vh;
+  background-image: url("../images/bg.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 30px;
 }
+
 .charactor .chara_name {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 0 0 99px 99px;
-  padding: 10px 15px;
+  padding: 15px 20px;
   width: 100%;
   margin: 0 auto;
+  font-size: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.charactor img {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}/*# sourceMappingURL=index.css.map */
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.no-tasks {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 1.1rem;
+  background: #f5f5f5;
+  border-radius: 15px;
+  margin: 20px 0;
+}

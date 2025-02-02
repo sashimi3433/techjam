@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container friends-page">
+    <section class="friends-section">
+        <h1 class="page-title">フレンド</h1>
+        
+        <!-- Friend Requests Section -->
+        <div class="friend-requests">
+            <h2 class="section-title">フレンドリクエスト</h2>
+            {% if pending_requests %}
+                {% for request in pending_requests %}
+                <div class="friend-request-item">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            {% if request.sender.profile_image %}
+                                <img src="{{ request.sender.profile_image.url }}" alt="プロフィール画像">
+                            {% else %}
+                                <img src="{% static 'images/default-avatar.png' %}" alt="プロフィール画像">
+                            {% endif %}
+                        </div>
+                        <span class="username">{{ request.sender.username }}</span>
+                    </div>
+                    <div class="request-actions">
+                        <form method="post" action="{% url 'accept_friend_request' request.id %}" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="accept-btn">承認</button>
+                        </form>
+                        <form method="post" action="{% url 'reject_friend_request' request.id %}" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="reject-btn">拒否</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-requests">新しいフレンドリクエストはありません</p>
+            {% endif %}
+        </div>
+
+        <!-- Friends List Section -->
+        <div class="friends-list">
+            <h2 class="section-title">フレンド一覧</h2>
+            {% if friends %}
+                {% for friend in friends %}
+                <div class="friend-item">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            {% if friend.profile_image %}
+                                <img src="{{ friend.profile_image.url }}" alt="プロフィール画像">
+                            {% else %}
+                                <img src="{% static 'images/default-avatar.png' %}" alt="プロフィール画像">
+                            {% endif %}
+                        </div>
+                        <div class="friend-details">
+                            <span class="username">{{ friend.username }}</span>
+                            {% if friend.affiliation %}
+                                <span class="affiliation">{{ friend.affiliation }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="friend-actions">
+                        <form method="post" action="{% url 'remove_friend' friend.id %}" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="remove-btn">
+                                <span class="material-symbols-outlined">person_remove</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-friends">フレンドがいません</p>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

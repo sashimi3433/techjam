@@ -8,36 +8,75 @@ h1 {
 }
 
 .tasklist {
+    padding: 20px;
 
     .task-item {
-        padding: 10px;
-        border: 2px solid #333;
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-        h3 {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0 40px 0;
+        .task-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+
+            .user-avatar {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 15px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .task-info {
+                .user-name {
+                    font-size: 0.9rem;
+                    margin-bottom: 5px;
+                }
+
+                time {
+                    font-size: 0.8rem;
+                    color: #666;
+                }
+            }
+        }
+
+        .task-content {
+            .task-title {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+
+            .task-time {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.9rem;
+            }
         }
     }
-}
 
-.charactor {
-    height: 70vh;
-    background-color: #92a6ff;
+    .charactor {
+        height: 60vh;
+        background-image: url('../images/bg.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
 
-    .chara_name {
-        background-color: #fff;
-        border-radius: 0 0 99px 99px;
-        padding: 10px 15px;
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    img {
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        .chara_name {
+            background-color: #fff;
+            border-radius: 0 0 99px 99px;
+            padding: 10px 15px;
+            width: 100%;
+            margin: 0 auto;
+        }
     }
 }

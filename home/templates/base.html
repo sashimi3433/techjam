@@ -4,26 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム</title>
+    <title>タスク管理アプリ</title>
     <link rel="stylesheet" href="https://unpkg.com/destyle.css@4.0.1/destyle.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
     <link href="{% static 'css/form.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mypage.css' %}" rel="stylesheet">
+    <link href="{% static 'css/progress.css' %}" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="inner">
             <nav>
                 <ul>
-                    <a href=""><li>ホーム</li></a>
-                    <a href="#"><li>進捗</li></a>
-                    <a href="#"><li>マイページ</li></a>
+                    <li><a href="{% url 'index' %}"><span class="material-symbols-outlined">home</span>ホーム</a></li>
+                    <li><a href="{% url 'progress' %}"><span class="material-symbols-outlined">task</span>進捗</a></li>
+                    <li><a href="{% url 'friends' %}"><span class="material-symbols-outlined">group</span>フレンド</a></li>
+                    <li><a href="{% url 'mypage' %}"><span class="material-symbols-outlined">person</span>マイページ</a></li>
                 </ul>
             </nav>
 
             <div class="create">
-                <a href="{% url "add" %}"><span class="material-symbols-outlined">edit</span></a>
+                <a href="{% url 'add' %}" class="create-button">
+                    <span class="material-symbols-outlined">edit</span>
+                    <span class="create-text">新規作成</span>
+                </a>
             </div>
         </div>
     </header>

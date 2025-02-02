@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container landing-page">
+    <section class="hero">
+        <h1>タスク管理をもっと楽しく、効率的に</h1>
+        <p class="subtitle">あなたの日々のタスクをゲーム感覚で管理しましょう</p>
+        <div class="cta-buttons">
+            <a href="{% url 'login' %}" class="btn btn-primary">ログイン</a>
+            <a href="{% url 'register' %}" class="btn btn-secondary">新規登録</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>主な機能</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <span class="material-symbols-outlined">task_alt</span>
+                <h3>シンプルなタスク管理</h3>
+                <p>直感的なインターフェースで、タスクの追加・管理が簡単に行えます</p>
+            </div>
+            <div class="feature-item">
+                <span class="material-symbols-outlined">group</span>
+                <h3>フレンド機能</h3>
+                <p>友達と一緒にタスクをこなし、モチベーションを高めましょう</p>
+            </div>
+            <div class="feature-item">
+                <span class="material-symbols-outlined">trending_up</span>
+                <h3>進捗管理</h3>
+                <p>タスクの完了状況を視覚的に確認できます</p>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

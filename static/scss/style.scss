@@ -1,7 +1,25 @@
 @import "variables";
 
+@font-face {
+    font-family: "LINE Seed JP";
+    src:
+        url("../fonts/LINE/LINESeedJP_OTF_Rg.woff2") format("woff2"
+        );
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "LINE Seed JP";
+    src:
+        url("../fonts/LINE/LINESeedJP_OTF_Bd.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+}
+
 body {
     color: #333;
+    font-family: $font;
 }
 
 header {
@@ -23,6 +41,32 @@ header {
             ul {
                 display: flex;
                 gap: 40px;
+
+                li a {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+
+                    .material-symbols-outlined {
+                        font-size: 1.2rem;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+        .create {
+            .create-button {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                .material-symbols-outlined {
+                    font-size: 1.2rem;
+                    display: flex;
+                    align-items: center;
+                }
             }
         }
     }

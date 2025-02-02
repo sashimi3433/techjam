@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<main>
+<main class="container">
     <section class="charactor">
         <h1 class="chara_name">キャラ名</h1>
         {% comment %} {% if  %}
@@ -11,25 +12,43 @@
             <img src="" alt="キャラ画像">
         {% endif %}
         {% if  %} {% endcomment %}
-            <img src="" alt="キャラ画像">
+            <img src="" alt="キャラ画像" class="character-image">
         {% comment %} {% endif %} {% endcomment %}
     </section>
     <section class="tasklist">
-        <h1>タスクリスト</h1>
-        {% if tasks %}
-            {% for task in tasks %}
-            <div class="task-item priority-{{ task.priority }}">
-                <h3>{{ task.title }}</h3>
-                <p class="description">{{ task.description }}</p>
-                <div class="task-meta">
-                    <span class="priority">優先度: {{ task.get_priority_display }}</span>
-                    <span class="expiry-note">※このタスクは作成から24時間後に自動的に削除されます</span>
+        <div class="ongoing-tasks">
+            <h2 class="section-title">進行中のタスク</h2>
+            {% if tasks %}
+                {% for task in tasks %}
+                {% if not task.completed %}
+                <div class="task-item priority-{{ task.priority }}">
+                    <div class="task-header">
+                        <div class="user-avatar">
+                            {% if task.user.profile_image %}
+                                <img src="{{ task.user.profile_image.url }}" alt="ユーザーアバター">
+                            {% else %}
+                                <img src="{% static 'images/default-avatar.png' %}" alt="ユーザーアバター">
+                            {% endif %}
+                        </div>
+                        <div class="task-info">
+                            <p class="user-name">{{ task.user.username }}さんがタスクを開始しました。</p>
+                            <time>00:00</time>
+                        </div>
+                    </div>
+                    <div class="task-content">
+                        <h3 class="task-title">タスク：{{ task.title }}</h3>
+                        <div class="task-time">
+                            <p class="target-time">目標：10分</p>
+                            <p class="completion-time">達成結果：10分</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
-        {% else %}
-            <p class="no-tasks">タスクがありません。</p>
-        {% endif %}
+                {% endif %}
+                {% endfor %}
+            {% else %}
+                <p class="no-tasks">進行中のタスクはありません</p>
+            {% endif %}
+        </div>
     </section>
 </main>
 {% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container">
+    <section class="profile-section">
+        <h1 class="page-title">マイページ</h1>
+        <div class="profile-info">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    {% if user.profile_image %}
+                        <img src="{{ user.profile_image.url }}" alt="プロフィール画像">
+                    {% else %}
+                        <img src="{% static 'images/default-avatar.png' %}" alt="プロフィール画像">
+                    {% endif %}
+                </div>
+                <h2 class="profile-name">{{ user.username }}</h2>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-label">完了タスク</span>
+                    <span class="stat-value">{{ completed_tasks_count|default:0 }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">進行中タスク</span>
+                    <span class="stat-value">{{ ongoing_tasks_count|default:0 }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="settings-section">
+        <h2 class="section-title">設定</h2>
+        <form method="post" class="settings-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">ユーザー名</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="profile_image">プロフィール画像</label>
+                <input type="file" id="profile_image" name="profile_image" class="form-control-file">
+            </div>
+            <button type="submit" class="save-button">保存</button>
+        </form>
+    </section>
+</main>
+{% endblock %}
