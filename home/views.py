@@ -31,7 +31,7 @@ def add(request):
             task = Task(
                 title=request.POST['title'],
                 description=request.POST['description'],
-                priority=request.POST['priority'],
+
                 user=request.user
             )
             task.save()
@@ -139,19 +139,12 @@ def progress_view(request):
     ongoing_tasks_count = tasks.filter(completed=False).count()
     total_tasks_count = tasks.count()
     
-    # Get tasks by priority
-    high_priority_tasks = tasks.filter(priority='high')
-    medium_priority_tasks = tasks.filter(priority='medium')
-    low_priority_tasks = tasks.filter(priority='low')
-    
     context = {
         'user': user,
         'completed_tasks_count': completed_tasks_count,
         'ongoing_tasks_count': ongoing_tasks_count,
         'total_tasks_count': total_tasks_count,
-        'high_priority_tasks': high_priority_tasks,
-        'medium_priority_tasks': medium_priority_tasks,
-        'low_priority_tasks': low_priority_tasks
+        'tasks': tasks
     }
     
     return render(request, 'home/progress.html', context)

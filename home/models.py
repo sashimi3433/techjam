@@ -27,15 +27,8 @@ class Friendship(models.Model):
         unique_together = ('user', 'friend')
 
 class Task(models.Model):
-    PRIORITY_CHOICES = [
-        ('high', '高'),
-        ('medium', '中'),
-        ('low', '低'),
-    ]
-
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -45,7 +38,7 @@ class Task(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-created_at', '-priority']
+        ordering = ['-created_at']
 
 class CustomUser(AbstractUser):
     # プロフィール画像
