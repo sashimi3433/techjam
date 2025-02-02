@@ -3,43 +3,61 @@
 
 {% block content %}
 <main class="container progress-page">
-    <section class="progress-overview">
-        <h1 class="page-title">タスクの進捗</h1>
-        
-        <div class="stats-container">
-            <div class="stat-card">
-                <h3>完了タスク</h3>
-                <p class="stat-number">{{ completed_tasks_count|default:0 }}</p>
-            </div>
-            <div class="stat-card">
-                <h3>進行中</h3>
-                <p class="stat-number">{{ ongoing_tasks_count|default:0 }}</p>
-            </div>
-            <div class="stat-card">
-                <h3>総タスク数</h3>
-                <p class="stat-number">{{ total_tasks_count|default:0 }}</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="tasks-list">
-        <h2 class="section-title">タスク一覧</h2>
-        <div class="task-list">
-            {% for task in tasks %}
-            <div class="task-item">
-                <h4>{{ task.title }}</h4>
-                <div class="task-status {% if task.completed %}completed{% endif %}">
-                    {% if task.completed %}
-                    <span class="material-symbols-outlined">task_alt</span>
-                    {% else %}
-                    <span class="material-symbols-outlined">pending</span>
-                    {% endif %}
+    <div class="task-board">
+        <div class="task-column todo-column">
+            <h2>ToDo 0</h2>
+            <div class="task-list">
+                {% for task in tasks %}
+                {% if not task.completed and not task.in_progress %}
+                <div class="task-card">
+                    <h4>{{ task.title }}</h4>
+                    <div class="task-status">
+                        <span class="material-symbols-outlined">pending</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% empty %}
+                <p class="no-tasks">タスクはありません</p>
+                {% endfor %}
+                <div class="add-task">
+                    <a href="{% url 'add' %}" class="add-task-button">
+                        <span>＋ タスクを追加</span>
+                    </a>
                 </div>
             </div>
-            {% empty %}
-            <p class="no-tasks">タスクはありません</p>
-            {% endfor %}
         </div>
-    </section>
+
+        <div class="task-column in-progress-column">
+            <h2>進行中：</h2>
+            <div class="task-list">
+                {% for task in tasks %}
+                {% if task.in_progress %}
+                <div class="task-card">
+                    <h4>{{ task.title }}</h4>
+                    <div class="task-status">
+                        <span class="material-symbols-outlined">hourglass_empty</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="task-column completed-column">
+            <h2>完了：</h2>
+            <div class="task-list">
+                {% for task in tasks %}
+                {% if task.completed %}
+                <div class="task-card">
+                    <h4>{{ task.title }}</h4>
+                    <div class="task-status completed">
+                        <span class="material-symbols-outlined">task_alt</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock %}

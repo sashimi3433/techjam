@@ -4,87 +4,52 @@
   font-weight: 300;
   font-style: normal;
 }
-
 @font-face {
   font-family: "LINE Seed JP";
   src: url("../fonts/LINE/LINESeedJP_OTF_Bd.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
 }
-
 body {
   color: #333;
-  font-family: "LINE Seed JP", "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-  background-color: #f8f9fa;
-  line-height: 1.6;
+  font-family: "TT Norms Pro", "LINE Seed JP", "Helvetica Neue", Arial, Poppins, "Noto Sans JP", sans-serif;
 }
 
 header {
-  padding: 15px 0;
+  padding: 20px;
   width: 100%;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background-color: #333;
+  color: #fff;
 }
-
 header .inner {
   display: flex;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   align-items: center;
-  padding: 0 20px;
+  font-size: 1rem;
 }
-
 header .inner nav {
   margin-right: auto;
 }
-
 header .inner nav ul {
   display: flex;
   gap: 40px;
 }
-
 header .inner nav ul li a {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #666;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  gap: 4px;
 }
-
-header .inner nav ul li a:hover {
-  color: #333;
-  background-color: #f5f5f5;
-}
-
 header .inner nav ul li a .material-symbols-outlined {
   font-size: 1.2rem;
   display: flex;
   align-items: center;
 }
-
 header .inner .create .create-button {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  gap: 4px;
 }
-
-header .inner .create .create-button:hover {
-  background-color: #45a049;
-  transform: translateY(-1px);
-}
-
 header .inner .create .create-button .material-symbols-outlined {
   font-size: 1.2rem;
   display: flex;
@@ -92,15 +57,6 @@ header .inner .create .create-button .material-symbols-outlined {
 }
 
 main {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.container {
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 30px;
-  margin-top: 20px;
-}
+}/*# sourceMappingURL=style.css.map */
