@@ -11,4 +11,5 @@ urlpatterns = [
     path('mypage/', views.mypage_view, name='mypage'),
     path('progress/', views.progress_view, name='progress'),
     path('complete-task/<int:task_id>/', views.complete_task, name='complete_task'),
+    path('timeline/', views.timeline_view, name='timeline'),
 ]

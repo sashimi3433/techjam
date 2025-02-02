@@ -40,14 +40,25 @@ class Task(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+class TimelineActivity(models.Model):
+    ACTIVITY_TYPES = [
+        ('task_created', 'タスク作成'),
+        ('task_completed', 'タスク完了')
+    ]
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    activity_type = models.CharField(max_length=20, choices=ACTIVITY_TYPES)
+    content = models.TextField()
+    related_task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
 class CustomUser(AbstractUser):
-    # プロフィール画像
     profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
-    # 自己紹介
     bio = models.TextField(max_length=500, blank=True)
-    # 所属
     affiliation = models.CharField(max_length=100, blank=True)
-    # 作成日時
     created_at = models.DateTimeField(auto_now_add=True)
     # 更新日時
     updated_at = models.DateTimeField(auto_now=True)
@@ -58,3 +69,25 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class TimelineActivity(models.Model):
+    ACTIVITY_TYPES = [
+        ('task_created', 'タスク作成'),
+        ('task_completed', 'タスク完了'),
+        ('level_up', 'レベルアップ'),
+        ('friend_added', '友達追加')
+    ]
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='activities')
+    activity_type = models.CharField(max_length=50, choices=ACTIVITY_TYPES)
+    content = models.TextField()
+    related_task = models.ForeignKey(Task, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'タイムラインアクティビティ'
+        verbose_name_plural = 'タイムラインアクティビティ'
+
+    def __str__(self):
+        return f'{self.user.username} - {self.get_activity_type_display()} - {self.created_at}'

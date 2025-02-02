@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import CustomUser, Task
+from .models import CustomUser, Task, TimelineActivity
 from django.utils import timezone
 from datetime import timedelta
 
@@ -18,23 +18,28 @@ def index(request):
             'tasks': tasks,
             'user': request.user
         }
+        return render(request, 'home/index.html', context)
     else:
-        context = {
-            'tasks': [],
-            'user': None
-        }
-    return render(request, 'home/index.html', context)
+        return render(request, 'home/landing.html', {'user': None})
 
+@login_required
 def add(request):
     if request.method == 'POST':
         try:
             task = Task(
                 title=request.POST['title'],
                 description=request.POST['description'],
-
                 user=request.user
             )
             task.save()
+            
+            # タスク作成のアクティビティを記録
+            TimelineActivity.objects.create(
+                user=request.user,
+                activity_type='task_created',
+                content=f'新しいタスク「{task.title}」を作成しました',
+                related_task=task
+            )
             return redirect('index')
         except Exception as e:
             return render(request, 'home/add.html', {'error': str(e), 'user': request.user})
@@ -78,6 +83,14 @@ def complete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id, user=request.user)
     task.completed = True
     task.save()
+    
+    # タスク完了のアクティビティを記録
+    TimelineActivity.objects.create(
+        user=request.user,
+        activity_type='task_completed',
+        content=f'タスク「{task.title}」を完了しました',
+        related_task=task
+    )
     return redirect('progress')
 
 def register_view(request):
@@ -146,3 +159,17 @@ def progress_view(request):
     }
     
     return render(request, 'home/progress.html', context)
+
+@login_required
+def timeline_view(request):
+    from .models import TimelineActivity
+    
+    # Get all activities for the current user and their friends
+    activities = TimelineActivity.objects.select_related('user', 'related_task').order_by('-created_at')
+    
+    context = {
+        'user': request.user,
+        'activities': activities
+    }
+    
+    return render(request, 'home/timeline.html', context)

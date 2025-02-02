@@ -86,15 +86,18 @@
   justify-content: center;
   min-height: calc(100vh - 60px);
   padding: 20px;
-  background-color: #f8f9fa;
+  background-image: url("/static/images/bg.png");
 }
 .auth-page .login-container {
   width: 100%;
   max-width: 500px;
   padding: 40px;
-  background: white;
-  border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.413);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .auth-page .login-container h2 {
   font-size: 2rem;
