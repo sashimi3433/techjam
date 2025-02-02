@@ -20,8 +20,12 @@
                 <ul>
                     <li><a href="{% url 'index' %}"><span class="material-symbols-outlined">home</span>ホーム</a></li>
                     <li><a href="{% url 'progress' %}"><span class="material-symbols-outlined">task</span>進捗</a></li>
-                    <li><a href="{% url 'friends' %}"><span class="material-symbols-outlined">group</span>フレンド</a></li>
                     <li><a href="{% url 'mypage' %}"><span class="material-symbols-outlined">person</span>マイページ</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}"><span class="material-symbols-outlined">logout</span>ログアウト</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}"><span class="material-symbols-outlined">login</span>ログイン</a></li>
+                    {% endif %}
                 </ul>
             </nav>
 

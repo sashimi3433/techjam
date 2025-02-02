@@ -1,20 +1,24 @@
 .progress-page {
   padding: 20px;
 }
+
 .progress-page .progress-overview {
   margin-bottom: 40px;
 }
+
 .progress-page .progress-overview .page-title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 30px;
   text-align: center;
 }
+
 .progress-page .progress-overview .stats-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+
 .progress-page .progress-overview .stats-container .stat-card {
   background: #fff;
   border-radius: 15px;
@@ -22,38 +26,45 @@
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .progress-page .progress-overview .stats-container .stat-card h3 {
   font-size: 1.1rem;
   margin-bottom: 10px;
   color: #666;
 }
+
 .progress-page .progress-overview .stats-container .stat-card .stat-number {
   font-size: 2rem;
   font-weight: bold;
   color: #333;
 }
+
 .progress-page .tasks-by-priority .section-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 20px;
 }
+
 .progress-page .tasks-by-priority .priority-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group {
   background: #fff;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group h3 {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 15px;
   text-align: center;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group .task-item {
   display: flex;
   justify-content: space-between;
@@ -61,31 +72,41 @@
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group .task-item:last-child {
   border-bottom: none;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group .task-item h4 {
   font-size: 1rem;
   margin-right: 10px;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group .task-item .task-status .material-symbols-outlined {
   font-size: 20px;
   color: #666;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group .task-item .task-status.completed .material-symbols-outlined {
   color: #4CAF50;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-group .no-tasks {
   text-align: center;
   color: #666;
   padding: 20px 0;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-high h3 {
   color: #f44336;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-medium h3 {
   color: #ff9800;
 }
+
 .progress-page .tasks-by-priority .priority-list .priority-low h3 {
   color: #4CAF50;
-}/*# sourceMappingURL=progress.css.map */
+}
+
+/*# sourceMappingURL=progress.css.map */

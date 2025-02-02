@@ -2,6 +2,30 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
 
+class FriendRequest(models.Model):
+    STATUS_CHOICES = [
+        ('pending', '保留中'),
+        ('accepted', '承認済み'),
+        ('rejected', '拒否')
+    ]
+
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sent_friend_requests')
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='received_friend_requests')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('sender', 'receiver')
+
+class Friendship(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='friendships')
+    friend = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='friends')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'friend')
+
 class Task(models.Model):
     PRIORITY_CHOICES = [
         ('high', '高'),
@@ -41,33 +65,3 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
-
-    def get_friends(self):
-        return self.friends.all()
-
-    def get_pending_friend_requests(self):
-        return self.received_friend_requests.filter(status='pending')
-
-class FriendRequest(models.Model):
-    STATUS_CHOICES = [
-        ('pending', '保留中'),
-        ('accepted', '承認済み'),
-        ('rejected', '拒否')
-    ]
-
-    sender = models.ForeignKey(CustomUser, related_name='sent_friend_requests', on_delete=models.CASCADE)
-    receiver = models.ForeignKey(CustomUser, related_name='received_friend_requests', on_delete=models.CASCADE)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = ['sender', 'receiver']
-
-class Friendship(models.Model):
-    user = models.ForeignKey(CustomUser, related_name='friendships', on_delete=models.CASCADE)
-    friend = models.ForeignKey(CustomUser, related_name='friends', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ['user', 'friend']
