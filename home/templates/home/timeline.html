@@ -26,7 +26,10 @@
                     {{ activity.content }}
                     {% if activity.related_task %}
                         <div class="related-task">
-                            <span class="task-title">{{ activity.related_task.title }}</span>
+                            <span class="task-title">タスク：{{ activity.related_task.title }}</span>
+                            {% if activity.related_task.description %}
+                                <p class="task-description">{{ activity.related_task.description }}</p>
+                            {% endif %}
                         </div>
                     {% endif %}
                 </div>

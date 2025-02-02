@@ -42,7 +42,7 @@ class Task(models.Model):
 
 class TimelineActivity(models.Model):
     ACTIVITY_TYPES = [
-        ('task_created', 'タスク作成'),
+        ('task_created', 'タスク開始'),
         ('task_completed', 'タスク完了')
     ]
 

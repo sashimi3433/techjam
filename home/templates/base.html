@@ -12,6 +12,7 @@
     <link href="{% static 'css/form.css' %}" rel="stylesheet">
     <link href="{% static 'css/mypage.css' %}" rel="stylesheet">
     <link href="{% static 'css/progress.css' %}" rel="stylesheet">
+    <link href="{% static 'css/timeline.css' %}" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -21,7 +22,7 @@
                     <li><a href="{% url 'index' %}"><span class="material-symbols-outlined">home</span>ホーム</a></li>
                     <li><a href="{% url 'progress' %}"><span class="material-symbols-outlined">task</span>進捗</a></li>
                     <li><a href="{% url 'mypage' %}"><span class="material-symbols-outlined">person</span>マイページ</a></li>
-                    <li><a href="{% url 'timeline' %}"><span class="material-symbols-outlined">person</span>タイムライン</a></li>
+                    <li><a href="{% url 'timeline' %}"><span class="material-symbols-outlined">view_timeline</span>タイムライン</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'logout' %}"><span class="material-symbols-outlined">logout</span>ログアウト</a></li>
                     {% else %}

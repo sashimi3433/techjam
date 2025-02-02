@@ -5,7 +5,7 @@
 <main class="container progress-page">
     <div class="task-board">
         <div class="task-column todo-column">
-            <h2>ToDo 0</h2>
+            <h2>ToDo</h2>
             <div class="task-list">
                 {% for task in tasks %}
                 {% if not task.completed and not task.in_progress %}
@@ -34,7 +34,7 @@
         </div>
 
         <div class="task-column in-progress-column">
-            <h2>進行中：</h2>
+            <h2>進行中</h2>
             <div class="task-list">
                 {% for task in tasks %}
                 {% if task.in_progress %}
@@ -56,7 +56,7 @@
         </div>
 
         <div class="task-column completed-column">
-            <h2>完了：</h2>
+            <h2>完了</h2>
             <div class="task-list">
                 {% for task in tasks %}
                 {% if task.completed %}
