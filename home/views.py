@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import CustomUser, Task, TimelineActivity
+from .models import CustomUser, Task, TimelineActivity, FriendRequest, Friendship
 from django.utils import timezone
 from datetime import timedelta
 
@@ -14,13 +14,16 @@ def index(request):
         
         # Get remaining tasks
         tasks = Task.objects.filter(user=request.user)
+        completed_tasks_count = tasks.filter(completed=True).count()
+        ongoing_tasks_count = tasks.filter(completed=False).count()
         context = {
             'tasks': tasks,
-            'user': request.user
+            'completed_tasks_count':completed_tasks_count,
+            'ongoing_tasks_count':ongoing_tasks_count,
         }
         return render(request, 'home/index.html', context)
     else:
-        return render(request, 'home/landing.html', {'user': None})
+        return render(request, 'home/landing.html')
 
 @login_required
 def add(request):
@@ -173,3 +176,71 @@ def timeline_view(request):
     }
     
     return render(request, 'home/timeline.html', context)
+
+@login_required
+def friends_view(request):
+    search_query = request.GET.get('search', '')
+    search_results = None
+
+    if search_query:
+        search_results = CustomUser.objects.filter(username__icontains=search_query).exclude(id=request.user.id)
+
+    # Get pending friend requests
+    pending_requests = FriendRequest.objects.filter(receiver=request.user, status='pending')
+    # Get user's friends through Friendship model
+    friendships = Friendship.objects.filter(user=request.user)
+    friends = [friendship.friend for friendship in friendships]
+
+    context = {
+        'search_query': search_query,
+        'search_results': search_results,
+        'pending_requests': pending_requests,
+        'friends': friends,
+    }
+    return render(request, 'home/friends.html', context)
+
+@login_required
+def send_friend_request(request, user_id):
+    if request.method == 'POST':
+        receiver = get_object_or_404(CustomUser, id=user_id)
+        # Check if a friend request already exists
+        if not FriendRequest.objects.filter(sender=request.user, receiver=receiver).exists():
+            FriendRequest.objects.create(sender=request.user, receiver=receiver)
+    return redirect('friends')
+
+@login_required
+def remove_friend(request, friend_id):
+    if request.method == 'POST':
+        friend = get_object_or_404(CustomUser, id=friend_id)
+        # Delete bidirectional friendship
+        Friendship.objects.filter(user=request.user, friend=friend).delete()
+        Friendship.objects.filter(user=friend, friend=request.user).delete()
+    return redirect('friends')
+
+@login_required
+def accept_friend_request(request, request_id):
+    if request.method == 'POST':
+        friend_request = get_object_or_404(FriendRequest, id=request_id, receiver=request.user)
+        friend_request.status = 'accepted'
+        friend_request.save()
+        # Create bidirectional friendship
+        Friendship.objects.create(user=request.user, friend=friend_request.sender)
+        Friendship.objects.create(user=friend_request.sender, friend=request.user)
+    return redirect('friends')
+
+@login_required
+def remove_friend(request, friend_id):
+    if request.method == 'POST':
+        friend = get_object_or_404(CustomUser, id=friend_id)
+        # Delete bidirectional friendship
+        Friendship.objects.filter(user=request.user, friend=friend).delete()
+        Friendship.objects.filter(user=friend, friend=request.user).delete()
+    return redirect('friends')
+
+@login_required
+def reject_friend_request(request, request_id):
+    if request.method == 'POST':
+        friend_request = get_object_or_404(FriendRequest, id=request_id, receiver=request.user)
+        friend_request.status = 'rejected'
+        friend_request.save()
+    return redirect('friends')

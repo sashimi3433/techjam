@@ -59,9 +59,32 @@ class CustomUser(AbstractUser):
     profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     affiliation = models.CharField(max_length=100, blank=True)
+    experience_points = models.IntegerField(default=0)
+    tasks_completed = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     # 更新日時
     updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def level(self):
+        # Level up every 100 experience points
+        return (self.experience_points // 100) + 1
+
+    @property
+    def task_rank(self):
+        # Rank up every 5 completed tasks
+        return (self.tasks_completed // 5) + 1
+
+    @property
+    def next_level_progress(self):
+        # Calculate progress to next level (0-100)
+        current_level_xp = (self.level - 1) * 100
+        next_level_xp = self.level * 100
+        return ((self.experience_points - current_level_xp) / (next_level_xp - current_level_xp)) * 100
+
+    @property
+    def completed_tasks_count(self):
+        return self.tasks_completed
 
     class Meta:
         verbose_name = 'ユーザー'

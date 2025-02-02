@@ -5,9 +5,9 @@
 <main class="moyumoyu-container">
     <div class="header-section">
         <div class="level-info">
-            <div class="level-display">レベル 5</div>
+            <div class="level-display">レベル {{ user.level }}</div>
             <div class="progress-bar">
-                <div class="progress" style="width: 50%;">5 / 10</div>
+                <div class="progress" style="width: {{ user.next_level_progress }}%;">{{ user.experience_points }} / {{ user.level|add:"0" }}00</div>
             </div>
             <div class="next-evolution">
                 <p>次の報酬：</p>
@@ -23,37 +23,44 @@
         </div>
 
         <div class="task-rank">
-            <div class="rank-display">タスクランク 10</div>
-            <p class="remaining-tasks">あと 8こ</p>
+            <div class="rank-display">今までのタスク完了数</div>
+            <p class="remaining-tasks">{{ completed_tasks_count|default:0 }} こ</p>
         </div>
     </div>
 
     <div class="navigation-section">
-        <a href="{% url 'mypage' %}" class="nav-button">
-            <div class="nav-icon">👤</div>
-            <span>マイページ</span>
-        </a>
-        <a href="{% url 'add' %}" class="nav-button">
-            <div class="nav-icon">📝</div>
-            <span>タスク作成</span>
-        </a>
-        <a href="{% url 'timeline' %}" class="nav-button">
-            <div class="nav-icon">📅</div>
-            <span>タイムライン</span>
-        </a>
-        {% comment %} <a href="{% url 'friends' %}" class="nav-button">
-            <div class="nav-icon">👥</div>
-            <span>フレンド</span>
-        </a> {% endcomment %}
-        {% comment %} <a href="{% url 'timeline' %}" class="nav-button">
-            <div class="nav-icon">📃</div>
-            <span>タイムライン</span>
-        </a> {% endcomment %}
+        <ul>
+            <li>
+                <a href="{% url 'mypage' %}" class="nav-button">
+                    <div class="nav-icon">👤</div>
+                </a>
+                <span>マイページ</span>
+            </li>
+            <li>
+                <a href="{% url 'add' %}" class="nav-button">
+                    <div class="nav-icon">📝</div>
+                </a>
+                <span>タスク作成</span>
+            </li>
+            <li>
+                <a href="{% url 'timeline' %}" class="nav-button">
+                    <div class="nav-icon">📅</div>
+                </a>
+                <span>タイムライン</span>
+            </li>
+            <li>
+                <a href="{% url 'friends' %}" class="nav-button">
+                    <div class="nav-icon">👥</div>
+                </a>
+                <span>フレンド</span>
+            </li>
+        </ul>
     </div>
 
     <div class="task-progress-section">
-        <h2 class="section-title">本日のタスク進捗</h2>
         <div class="task-info">
+            <h2 class="section-title">本日のタスク進捗</h2>
+            <div class="tasks">
             {% for task in tasks %}
             {% if not task.completed %}
             <div class="task-example">
@@ -65,15 +72,16 @@
                 <span>タスクがありません</span>
             </div>
             {% endfor %}
+            </div>
         </div>
         <div class="task-counts">
             <div class="count-item">
-                <h3>タスク完了数：</h3>
-                <span class="count">2こ</span>
+                <h3>完了済みタスク数：</h3>
+                <span class="count">{{ completed_tasks_count|default:0 }}こ</span>
             </div>
             <div class="count-item">
                 <h3>タスク未完了数：</h3>
-                <span class="count">8こ</span>
+                <span class="count">{{ ongoing_tasks_count|default:0 }}こ</span>
             </div>
         </div>
     </div>

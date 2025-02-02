@@ -6,6 +6,54 @@
     <section class="friends-section">
         <h1 class="page-title">フレンド</h1>
         
+        <!-- Search Form Section -->
+        <div class="search-section">
+            <form method="get" action="{% url 'friends' %}" class="search-form">
+                <input type="text" name="search" placeholder="ユーザー名で検索" class="search-input">
+                <button type="submit" class="search-btn">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+            </form>
+        </div>
+        
+        <!-- Search Results Section -->
+        {% if search_query %}
+        <div class="search-results">
+            <h2 class="section-title">検索結果</h2>
+            {% if search_results %}
+                {% for user in search_results %}
+                <div class="search-result-item">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            {% if user.profile_image %}
+                                <img src="{{ user.profile_image.url }}" alt="プロフィール画像">
+                            {% else %}
+                                <img src="{% static 'images/default-avatar.png' %}" alt="プロフィール画像">
+                            {% endif %}
+                        </div>
+                        <div class="user-details">
+                            <span class="username">{{ user.username }}</span>
+                            {% if user.affiliation %}
+                                <span class="affiliation">{{ user.affiliation }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="user-actions">
+                        <form method="post" action="{% url 'send_friend_request' user.id %}" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="add-friend-btn">
+                                <span class="material-symbols-outlined">person_add</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-results">検索結果がありません</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        
         <!-- Friend Requests Section -->
         <div class="friend-requests">
             <h2 class="section-title">フレンドリクエスト</h2>

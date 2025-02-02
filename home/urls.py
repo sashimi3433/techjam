@@ -12,4 +12,9 @@ urlpatterns = [
     path('progress/', views.progress_view, name='progress'),
     path('complete-task/<int:task_id>/', views.complete_task, name='complete_task'),
     path('timeline/', views.timeline_view, name='timeline'),
+    path('friends/', views.friends_view, name='friends'),
+    path('send-friend-request/<int:user_id>/', views.send_friend_request, name='send_friend_request'),
+    path('accept-friend-request/<int:request_id>/', views.accept_friend_request, name='accept_friend_request'),
+    path('reject-friend-request/<int:request_id>/', views.reject_friend_request, name='reject_friend_request'),
+    path('remove-friend/<int:friend_id>/', views.remove_friend, name='remove_friend'),
 ]
