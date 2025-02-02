@@ -46,6 +46,30 @@
   color: #4a4a4a;
   margin-right: 1rem;
 }
+.progress-page .task-board .task-column .task-list .task-card .task-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.progress-page .task-board .task-column .task-list .task-card .task-actions .complete-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.progress-page .task-board .task-column .task-list .task-card .task-actions .complete-button:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
+}
+.progress-page .task-board .task-column .task-list .task-card .task-actions .complete-button .material-symbols-outlined {
+  font-size: 18px;
+}
 .progress-page .task-board .task-column .task-list .task-card .task-status .material-symbols-outlined {
   font-size: 20px;
   color: #666;

@@ -11,8 +11,14 @@
                 {% if not task.completed and not task.in_progress %}
                 <div class="task-card">
                     <h4>{{ task.title }}</h4>
-                    <div class="task-status">
-                        <span class="material-symbols-outlined">pending</span>
+                    <div class="task-actions">
+                        <a href="{% url 'complete_task' task.id %}" class="complete-button">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            完了
+                        </a>
+                        <div class="task-status">
+                            <span class="material-symbols-outlined">pending</span>
+                        </div>
                     </div>
                 </div>
                 {% endif %}
@@ -34,8 +40,14 @@
                 {% if task.in_progress %}
                 <div class="task-card">
                     <h4>{{ task.title }}</h4>
-                    <div class="task-status">
-                        <span class="material-symbols-outlined">hourglass_empty</span>
+                    <div class="task-actions">
+                        <a href="{% url 'complete_task' task.id %}" class="complete-button">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            完了
+                        </a>
+                        <div class="task-status">
+                            <span class="material-symbols-outlined">hourglass_empty</span>
+                        </div>
                     </div>
                 </div>
                 {% endif %}

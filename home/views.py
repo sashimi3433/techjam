@@ -75,12 +75,10 @@ def register_view(request):
 
 @login_required
 def complete_task(request, task_id):
-    if request.method == 'POST':
-        task = Task.objects.get(id=task_id, user=request.user)
-        task.completed = True
-        task.save()
-        return redirect('index')
-    return redirect('index')
+    task = get_object_or_404(Task, id=task_id, user=request.user)
+    task.completed = True
+    task.save()
+    return redirect('progress')
 
 def register_view(request):
     if request.method == 'POST':
