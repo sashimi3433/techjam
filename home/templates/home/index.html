@@ -11,7 +11,7 @@
             </div>
             <div class="next-evolution">
                 <p>次の報酬：</p>
-                <img src="{% static 'images/default-avatar.png' %}" alt="次の報酬" class="next-reward-image">
+                <img src="{% static 'images/next.png' %}" alt="次の報酬" class="next-reward-image">
             </div>
         </div>
 
@@ -49,14 +49,18 @@
 
     <div class="task-progress-section">
         <h2 class="section-title">本日のタスク進捗</h2>
-        <div class="current-task">
-            <h3>現在進行中のタスク：</h3>
-            <div class="task-info">
-                <div class="task-example">
-                    <span>例：本を読む</span>
-                    <span>0/10ページ</span>
-                </div>
+        <div class="task-info">
+            {% for task in tasks %}
+            {% if not task.completed %}
+            <div class="task-example">
+                <span>{{ task.title }}</span>
             </div>
+            {% endif %}
+            {% empty %}
+            <div class="task-example">
+                <span>タスクがありません</span>
+            </div>
+            {% endfor %}
         </div>
         <div class="task-counts">
             <div class="count-item">
