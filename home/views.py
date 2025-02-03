@@ -14,8 +14,8 @@ def index(request):
         
         # Get remaining tasks
         tasks = Task.objects.filter(user=request.user)
-        completed_tasks_count = tasks.filter(completed=True).count()
-        ongoing_tasks_count = tasks.filter(completed=False).count()
+        completed_tasks_count = tasks.filter(status='completed').count()
+        ongoing_tasks_count = tasks.filter(status='ongoing').count()
         context = {
             'tasks': tasks,
             'completed_tasks_count':completed_tasks_count,
@@ -84,7 +84,7 @@ def register_view(request):
 @login_required
 def complete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id, user=request.user)
-    task.completed = True
+    task.status = 'completed'
     task.save()
     
     # タスク完了のアクティビティを記録
@@ -121,8 +121,8 @@ def register_view(request):
 def mypage_view(request):
     user = request.user
     tasks = Task.objects.filter(user=user)
-    completed_tasks_count = tasks.filter(completed=True).count()
-    ongoing_tasks_count = tasks.filter(completed=False).count()
+    completed_tasks_count = tasks.filter(status='completed').count()
+    ongoing_tasks_count = tasks.filter(status='ongoing').count()
     
     if request.method == 'POST':
         user.username = request.POST.get('username')
@@ -149,8 +149,8 @@ def progress_view(request):
     tasks = Task.objects.filter(user=user)
     
     # Calculate task statistics
-    completed_tasks_count = tasks.filter(completed=True).count()
-    ongoing_tasks_count = tasks.filter(completed=False).count()
+    completed_tasks_count = tasks.filter(status='completed').count()
+    ongoing_tasks_count = tasks.filter(status='ongoing').count()
     total_tasks_count = tasks.count()
     
     context = {

@@ -13,6 +13,12 @@ $success: #198753;
 $danger: #dc3444;
 $primary: #0c6dfd;
 $warning: #ffc007;
+$primary-color: $primary;
+$primary-color-light: lighten($primary, 20%
+);
+
+$text-color: #333;
+$text-color-light: #4a4a4a;
 
 $font: 'TT Norms Pro',
     "LINE Seed JP",
