@@ -37,7 +37,7 @@
                 <span>マイページ</span>
             </li>
             <li>
-                <a href="{% url 'add' %}" class="nav-button">
+                <a href="{% url 'progress' %}" class="nav-button">
                     <div class="nav-icon">📝</div>
                 </a>
                 <span>タスク作成</span>
@@ -65,6 +65,9 @@
             {% if not task.completed %}
             <div class="task-example">
                 <span>{{ task.title }}</span>
+                <a href="{% url 'complete_task' task.id %}" class="complete-button">
+                    完了
+                </a>
             </div>
             {% endif %}
             {% empty %}

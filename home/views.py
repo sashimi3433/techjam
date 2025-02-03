@@ -203,9 +203,18 @@ def friends_view(request):
 def send_friend_request(request, user_id):
     if request.method == 'POST':
         receiver = get_object_or_404(CustomUser, id=user_id)
-        # Check if a friend request already exists
-        if not FriendRequest.objects.filter(sender=request.user, receiver=receiver).exists():
-            FriendRequest.objects.create(sender=request.user, receiver=receiver)
+        # Check if there's an active friendship
+        if not Friendship.objects.filter(user=request.user, friend=receiver).exists():
+            # Check if there's a pending request
+            existing_request = FriendRequest.objects.filter(sender=request.user, receiver=receiver).first()
+            if existing_request:
+                if existing_request.status in ['rejected']:
+                    # If previous request was rejected, create a new one
+                    existing_request.delete()
+                    FriendRequest.objects.create(sender=request.user, receiver=receiver)
+            else:
+                # Create new friend request if none exists
+                FriendRequest.objects.create(sender=request.user, receiver=receiver)
     return redirect('friends')
 
 @login_required

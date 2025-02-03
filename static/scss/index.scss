@@ -201,6 +201,29 @@
                     color: #555;
                     font-size: 1.1rem;
                 }
+
+                .complete-button {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 6px 12px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border-radius: 6px;
+                    font-size: 0.9rem;
+                    text-decoration: none;
+                    transition: all 0.2s ease;
+                    margin-left: 20px;
+
+                    &:hover {
+                        background-color: #45a049;
+                        transform: translateY(-1px);
+                    }
+
+                    .material-symbols-outlined {
+                        font-size: 18px;
+                    }
+                }
             }
         }
 
