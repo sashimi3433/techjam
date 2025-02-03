@@ -8,7 +8,7 @@
             <h2>ToDo</h2>
             <div class="task-list">
                 {% for task in tasks %}
-                {% if not task.completed and not task.in_progress %}
+                {% if task.status == 'not_started' %}
                 <div class="task-card">
                     <h4>{{ task.title }}</h4>
                     <div class="task-actions">
@@ -37,7 +37,7 @@
             <h2>進行中</h2>
             <div class="task-list">
                 {% for task in tasks %}
-                {% if task.in_progress %}
+                {% if task.status == 'in_progress' %}
                 <div class="task-card">
                     <h4>{{ task.title }}</h4>
                     <div class="task-actions">
@@ -59,7 +59,7 @@
             <h2>完了</h2>
             <div class="task-list">
                 {% for task in tasks %}
-                {% if task.completed %}
+                {% if task.status == 'completed' %}
                 <div class="task-card">
                     <h4>{{ task.title }}</h4>
                     <div class="task-status completed">

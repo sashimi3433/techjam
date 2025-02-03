@@ -15,11 +15,13 @@ def index(request):
         # Get remaining tasks
         tasks = Task.objects.filter(user=request.user)
         completed_tasks_count = tasks.filter(status='completed').count()
-        ongoing_tasks_count = tasks.filter(status='ongoing').count()
+        in_progress_tasks_count = tasks.filter(status='in_progress').count()
+        not_started_tasks_count = tasks.filter(status='not_started').count()
         context = {
             'tasks': tasks,
-            'completed_tasks_count':completed_tasks_count,
-            'ongoing_tasks_count':ongoing_tasks_count,
+            'completed_tasks_count': completed_tasks_count,
+            'in_progress_tasks_count': in_progress_tasks_count,
+            'not_started_tasks_count': not_started_tasks_count,
         }
         return render(request, 'home/index.html', context)
     else:
@@ -150,13 +152,15 @@ def progress_view(request):
     
     # Calculate task statistics
     completed_tasks_count = tasks.filter(status='completed').count()
-    ongoing_tasks_count = tasks.filter(status='ongoing').count()
+    in_progress_tasks_count = tasks.filter(status='in_progress').count()
+    not_started_tasks_count = tasks.filter(status='not_started').count()
     total_tasks_count = tasks.count()
     
     context = {
         'user': user,
         'completed_tasks_count': completed_tasks_count,
-        'ongoing_tasks_count': ongoing_tasks_count,
+        'in_progress_tasks_count': in_progress_tasks_count,
+        'not_started_tasks_count': not_started_tasks_count,
         'total_tasks_count': total_tasks_count,
         'tasks': tasks
     }
