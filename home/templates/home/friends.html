@@ -4,9 +4,6 @@
 {% block content %}
 <main class="container friends-page">
     <section class="friends-section">
-        <h1 class="page-title">フレンド</h1>
-        
-        <!-- Search Form Section -->
         <div class="search-section">
             <form method="get" action="{% url 'friends' %}" class="search-form">
                 <input type="text" name="search" placeholder="ユーザー名で検索" class="search-input">
@@ -15,8 +12,6 @@
                 </button>
             </form>
         </div>
-        
-        <!-- Search Results Section -->
         {% if search_query %}
         <div class="search-results">
             <h2 class="section-title">検索結果</h2>

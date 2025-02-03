@@ -66,6 +66,7 @@
             <div class="task-example">
                 <span>{{ task.title }}</span>
                 <a href="{% url 'complete_task' task.id %}" class="complete-button">
+                    <span class="material-symbols-outlined">check_circle</span>
                     完了
                 </a>
             </div>

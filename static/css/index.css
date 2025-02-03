@@ -185,9 +185,6 @@
   background-color: #45a049;
   transform: translateY(-1px);
 }
-.moyumoyu-container .task-progress-section .task-info .task-example .complete-button .material-symbols-outlined {
-  font-size: 18px;
-}
 .moyumoyu-container .task-progress-section .task-counts {
   display: flex;
   gap: 1.5rem;

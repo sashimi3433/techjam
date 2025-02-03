@@ -3,15 +3,6 @@
   margin: 0 auto;
   padding: 1rem;
 }
-.timeline-container .timeline-header {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-.timeline-container .timeline-header h1 {
-  font-size: 1.8rem;
-  color: #2196f3;
-  font-weight: bold;
-}
 .timeline-container .timeline-feed .timeline-item {
   display: flex;
   gap: 1rem;
