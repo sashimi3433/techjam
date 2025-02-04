@@ -236,70 +236,66 @@
                 span {
                     color: #555;
                     font-size: 1.1rem;
+                }
 
-                    &.in-progress {
-                        color: #2196f3;
-                    }
+                .complete-button {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 6px 12px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border-radius: 6px;
+                    font-size: 0.9rem;
+                    text-decoration: none;
+                    transition: all 0.2s ease;
+                    margin-left: 20px;
 
-                    .complete-button {
-                        display: flex;
-                        align-items: center;
-                        gap: 4px;
-                        padding: 6px 12px;
-                        background-color: #4CAF50;
-                        color: white;
-                        border-radius: 6px;
-                        font-size: 0.9rem;
-                        text-decoration: none;
-                        transition: all 0.2s ease;
-                        margin-left: 20px;
-
-                        &:hover {
-                            background-color: #45a049;
-                            transform: translateY(-1px);
-                        }
+                    &:hover {
+                        background-color: #45a049;
+                        transform: translateY(-1px);
                     }
                 }
             }
+        }
 
-            .task-counts {
+        .task-counts {
+            display: flex;
+            gap: 1.5rem;
+            flex-flow: column;
+
+            .count-item {
+                flex: 1;
+                background: white;
+                border-radius: 12px;
+                padding: 1.25rem;
+                box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1);
                 display: flex;
-                gap: 1.5rem;
-                flex-flow: column;
+                font-size: 1.5rem;
 
-                .count-item {
-                    flex: 1;
-                    background: white;
-                    border-radius: 12px;
-                    padding: 1.25rem;
-                    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1);
-                    display: flex;
-                    font-size: 1.5rem;
+                h3 {
+                    color: #666;
+                    margin-bottom: 0.5rem;
+                }
 
-                    h3 {
-                        color: #666;
-                        margin-bottom: 0.5rem;
-                    }
-
-                    .count {
-                        color: #2196f3;
-                        font-weight: bold;
-                        margin-left: auto;
-                    }
+                .count {
+                    color: #2196f3;
+                    font-weight: bold;
+                    margin-left: auto;
                 }
             }
         }
     }
+}
 
-    @keyframes float {
+@keyframes float {
 
-        0%,
-        100% {
-            transform: translateY(0);
-        }
+    0%,
+    100% {
+        transform: translateY(0);
+    }
 
-        50% {
-            transform: translateY(-10px);
-        }
+    50% {
+        transform: translateY(-10px);
     }
 }

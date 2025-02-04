@@ -214,10 +214,7 @@
   color: #555;
   font-size: 1.1rem;
 }
-.moyumoyu-container .task-progress-section .task-info .task-example span.in-progress {
-  color: #2196f3;
-}
-.moyumoyu-container .task-progress-section .task-info .task-example span .complete-button {
+.moyumoyu-container .task-progress-section .task-info .task-example .complete-button {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -230,16 +227,16 @@
   transition: all 0.2s ease;
   margin-left: 20px;
 }
-.moyumoyu-container .task-progress-section .task-info .task-example span .complete-button:hover {
+.moyumoyu-container .task-progress-section .task-info .task-example .complete-button:hover {
   background-color: #45a049;
   transform: translateY(-1px);
 }
-.moyumoyu-container .task-progress-section .task-info .task-counts {
+.moyumoyu-container .task-progress-section .task-counts {
   display: flex;
   gap: 1.5rem;
   flex-flow: column;
 }
-.moyumoyu-container .task-progress-section .task-info .task-counts .count-item {
+.moyumoyu-container .task-progress-section .task-counts .count-item {
   flex: 1;
   background: white;
   border-radius: 12px;
@@ -248,15 +245,16 @@
   display: flex;
   font-size: 1.5rem;
 }
-.moyumoyu-container .task-progress-section .task-info .task-counts .count-item h3 {
+.moyumoyu-container .task-progress-section .task-counts .count-item h3 {
   color: #666;
   margin-bottom: 0.5rem;
 }
-.moyumoyu-container .task-progress-section .task-info .task-counts .count-item .count {
+.moyumoyu-container .task-progress-section .task-counts .count-item .count {
   color: #2196f3;
   font-weight: bold;
   margin-left: auto;
 }
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
