@@ -40,11 +40,6 @@
   background-color: white;
   color: #0c6dfd;
 }
-.landing-page .hero .cta-buttons .btn-secondary {
-  background-color: transparent;
-  border: 2px solid white;
-  color: white;
-}
 .landing-page .features {
   padding: 2rem 0;
 }

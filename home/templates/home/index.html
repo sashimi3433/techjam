@@ -62,10 +62,10 @@
             <h2 class="section-title">本日のタスク進捗</h2>
             <div class="tasks">
             {% for task in tasks %}
-            {% if not task.completed %}
+            {% if task.status == 'in_progress' %}
             <div class="task-example">
                 <span>{{ task.title }}</span>
-                <a href="{% url 'complete_task' task.id %}" class="complete-button">
+                <a href="{% url 'update_task_status' task.id %}" class="complete-button">
                     <span class="material-symbols-outlined">check_circle</span>
                     完了
                 </a>
@@ -73,7 +73,7 @@
             {% endif %}
             {% empty %}
             <div class="task-example">
-                <span>タスクがありません</span>
+                <span>進行中のタスクがありません</span>
             </div>
             {% endfor %}
             </div>
@@ -85,7 +85,8 @@
             </div>
             <div class="count-item">
                 <h3>タスク未完了数：</h3>
-                <span class="count">{{ ongoing_tasks_count|default:0 }}こ</span>
+                {% comment %} <span class="count">{{ ongoing_tasks_count|default:0 }}こ</span> {% endcomment %}
+                <span class="count">4こ</span>
             </div>
         </div>
     </div>

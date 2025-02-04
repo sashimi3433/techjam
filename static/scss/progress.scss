@@ -35,10 +35,9 @@
                 .task-card {
                     background: #f8f9fa;
                     border-radius: 10px;
-                    padding: 1rem;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
+                    padding: 1.5rem;
+                    display: block;
+                    position: relative;
                     transition: transform 0.2s ease;
 
                     &:hover {
@@ -48,79 +47,67 @@
                     h4 {
                         font-size: 1rem;
                         color: #4a4a4a;
-                        margin-right: 1rem;
+                        margin-bottom: 1rem;
+                        display: block;
                     }
 
                     .task-actions {
                         display: flex;
                         align-items: center;
                         gap: 1rem;
+                        justify-content: flex-end;
 
-                        .complete-button {
+                        .status-form {
                             display: flex;
                             align-items: center;
-                            gap: 4px;
-                            padding: 6px 12px;
-                            background-color: #4CAF50;
-                            color: white;
-                            border-radius: 6px;
-                            font-size: 0.9rem;
-                            text-decoration: none;
-                            transition: all 0.2s ease;
-
-                            &:hover {
-                                background-color: #45a049;
-                                transform: translateY(-1px);
-                            }
-
-                            .material-symbols-outlined {
-                                font-size: 18px;
-                            }
-                        }
-                    }
-
-                    .task-status {
-                        .material-symbols-outlined {
-                            font-size: 20px;
-                            color: #666;
-
-                            &.completed {
-                                color: #4CAF50;
-                            }
+                            gap: 0.5rem;
+                            width: auto;
+                            min-width: 200px;
                         }
                     }
                 }
 
-                .no-tasks {
-                    text-align: center;
-                    color: #666;
-                    padding: 1rem;
-                    background: #f8f9fa;
+                .task-status {
+                    .material-symbols-outlined {
+                        font-size: 20px;
+                        color: #666;
+
+                        &.completed {
+                            color: #4CAF50;
+                        }
+                    }
+                }
+            }
+
+            .no-tasks {
+                text-align: center;
+                color: #666;
+                padding: 1rem;
+                background: #f8f9fa;
+                border-radius: 10px;
+            }
+
+            .add-task {
+                margin-top: 1rem;
+
+                .add-task-button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    padding: 0.75rem;
+                    background: #e3f2fd;
+                    color: #1976d2;
                     border-radius: 10px;
-                }
+                    text-decoration: none;
+                    transition: background-color 0.2s ease;
 
-                .add-task {
-                    margin-top: 1rem;
+                    &:hover {
+                        background: #bbdefb;
+                    }
 
-                    .add-task-button {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 100%;
-                        padding: 0.75rem;
-                        background: #e3f2fd;
-                        color: #1976d2;
-                        border-radius: 10px;
-                        text-decoration: none;
-                        transition: background-color 0.2s ease;
-
-                        &:hover {
-                            background: #bbdefb;
-                        }
-
-                        span {
-                            font-size: 0.9rem;
-                        }
+                    span {
+                        font-size: 0.9rem;
                     }
                 }
             }

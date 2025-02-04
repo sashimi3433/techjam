@@ -8,8 +8,22 @@ from datetime import timedelta
 
 def index(request):
     if request.user.is_authenticated:
+        # Check if it's a new day (past midnight)
+        now = timezone.now()
+        if now.hour == 0 and now.minute < 5:  # Check within first 5 minutes of day
+            # Get tasks marked for progression
+            tasks_to_progress = Task.objects.filter(user=request.user, status='not_started')
+            for task in tasks_to_progress:
+                # Create new in-progress task
+                Task.objects.create(
+                    title=task.title,
+                    description=task.description,
+                    status='in_progress',
+                    user=request.user
+                )
+        
         # Delete tasks older than 24 hours
-        expiry_time = timezone.now() - timedelta(hours=24)
+        expiry_time = now - timedelta(hours=24)
         Task.objects.filter(created_at__lte=expiry_time).delete()
         
         # Get remaining tasks
@@ -84,18 +98,44 @@ def register_view(request):
     return render(request, 'home/register.html', {'user': None})
 
 @login_required
-def complete_task(request, task_id):
-    task = get_object_or_404(Task, id=task_id, user=request.user)
-    task.status = 'completed'
-    task.save()
-    
-    # タスク完了のアクティビティを記録
-    TimelineActivity.objects.create(
-        user=request.user,
-        activity_type='task_completed',
-        content=f'タスク「{task.title}」を完了しました',
-        related_task=task
-    )
+def update_task_status(request, task_id):
+    if request.method == 'POST':
+        task = get_object_or_404(Task, id=task_id, user=request.user)
+        new_status = request.POST.get('status')
+        if new_status in dict(Task.STATUS_CHOICES):
+            task.status = new_status
+            task.save()
+
+            # Create timeline activity for status change
+            TimelineActivity.objects.create(
+                user=request.user,
+                activity_type='task_created' if new_status == 'in_progress' else 'task_completed',
+                content=f'タスク「{task.title}」のステータスを{dict(Task.STATUS_CHOICES)[new_status]}に更新しました',
+                related_task=task
+            )
+
+    return redirect('progress')
+
+@login_required
+def duplicate_task(request, task_id):
+    if request.method == 'POST':
+        original_task = get_object_or_404(Task, id=task_id, user=request.user)
+        # Create a new task with in_progress status
+        new_task = Task.objects.create(
+            title=original_task.title,
+            description=original_task.description,
+            status='in_progress',
+            user=request.user
+        )
+
+        # Create timeline activity for the duplicated task
+        TimelineActivity.objects.create(
+            user=request.user,
+            activity_type='task_created',
+            content=f'タスク「{new_task.title}」を進行中として複製しました',
+            related_task=new_task
+        )
+
     return redirect('progress')
 
 def register_view(request):

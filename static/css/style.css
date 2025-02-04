@@ -20,6 +20,11 @@ header {
   padding: 20px;
   width: 100%;
 }
+@media screen and (max-width: 1000px) {
+  header {
+    display: none;
+  }
+}
 header .inner {
   display: flex;
   max-width: 1000px;
@@ -29,6 +34,7 @@ header .inner {
 }
 header .inner nav {
   margin-right: auto;
+  width: 100%;
 }
 header .inner nav ul {
   display: flex;
@@ -48,6 +54,29 @@ header .inner nav ul li a .material-symbols-outlined {
   color: aliceblue;
 }
 
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  header .inner nav ul {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  header .inner nav ul li {
+    width: calc(33.33% - 20px);
+    text-align: center;
+  }
+  header .inner nav ul li a {
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  header .inner nav ul li a .material-symbols-outlined {
+    padding: 8px;
+    font-size: 1.2rem;
+  }
+}
 main {
   max-width: 1000px;
   margin: 0 auto;

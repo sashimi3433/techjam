@@ -32,10 +32,9 @@
 .progress-page .task-board .task-column .task-list .task-card {
   background: #f8f9fa;
   border-radius: 10px;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 1.5rem;
+  display: block;
+  position: relative;
   transition: transform 0.2s ease;
 }
 .progress-page .task-board .task-column .task-list .task-card:hover {
@@ -44,50 +43,40 @@
 .progress-page .task-board .task-column .task-list .task-card h4 {
   font-size: 1rem;
   color: #4a4a4a;
-  margin-right: 1rem;
+  margin-bottom: 1rem;
+  display: block;
 }
 .progress-page .task-board .task-column .task-list .task-card .task-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: flex-end;
 }
-.progress-page .task-board .task-column .task-list .task-card .task-actions .complete-button {
+.progress-page .task-board .task-column .task-list .task-card .task-actions .status-form {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 12px;
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  gap: 0.5rem;
+  width: auto;
+  min-width: 200px;
 }
-.progress-page .task-board .task-column .task-list .task-card .task-actions .complete-button:hover {
-  background-color: #45a049;
-  transform: translateY(-1px);
-}
-.progress-page .task-board .task-column .task-list .task-card .task-actions .complete-button .material-symbols-outlined {
-  font-size: 18px;
-}
-.progress-page .task-board .task-column .task-list .task-card .task-status .material-symbols-outlined {
+.progress-page .task-board .task-column .task-list .task-status .material-symbols-outlined {
   font-size: 20px;
   color: #666;
 }
-.progress-page .task-board .task-column .task-list .task-card .task-status .material-symbols-outlined.completed {
+.progress-page .task-board .task-column .task-list .task-status .material-symbols-outlined.completed {
   color: #4CAF50;
 }
-.progress-page .task-board .task-column .task-list .no-tasks {
+.progress-page .task-board .task-column .no-tasks {
   text-align: center;
   color: #666;
   padding: 1rem;
   background: #f8f9fa;
   border-radius: 10px;
 }
-.progress-page .task-board .task-column .task-list .add-task {
+.progress-page .task-board .task-column .add-task {
   margin-top: 1rem;
 }
-.progress-page .task-board .task-column .task-list .add-task .add-task-button {
+.progress-page .task-board .task-column .add-task .add-task-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,10 +88,10 @@
   text-decoration: none;
   transition: background-color 0.2s ease;
 }
-.progress-page .task-board .task-column .task-list .add-task .add-task-button:hover {
+.progress-page .task-board .task-column .add-task .add-task-button:hover {
   background: #bbdefb;
 }
-.progress-page .task-board .task-column .task-list .add-task .add-task-button span {
+.progress-page .task-board .task-column .add-task .add-task-button span {
   font-size: 0.9rem;
 }
 .progress-page .task-board .todo-column {

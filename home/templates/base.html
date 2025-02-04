@@ -40,18 +40,21 @@
     </header>
     {% block content %}
     {% endblock %}
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/static/js/service-worker.js')
-                .then(registration => {
-                    console.log('ServiceWorker registration successful');
+<!-- headタグ内に追加 -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    
+    <!-- bodyの終了タグの直前に追加 -->
+    <script src="{% static 'js/pwa.js' %}"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/js/sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker登録成功:', registration);
                 })
-                .catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
+                .catch(function(error) {
+                    console.log('ServiceWorker登録失敗:', error);
                 });
-        });
-    }
-</script>
+        }
+    </script>
 </body>
 </html>
