@@ -1,12 +1,9 @@
-# インストール方法
+# 説明
 
-## 環境構築
+## デプロイしたもの
 
-## アカウント情報
+https://techjam.pythonanywhere.com
 
-ユーザーネーム
-ほげ
+## 動画
 
-パスワード
-hoge
-
+techjam.mp4
